@@ -1,0 +1,390 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-googlemaps" version="1.4.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>phonegap-googlemaps-plugin</name>
+    <js-module name="cordova-plugin-googlemaps" src="www/googlemaps-cdv-plugin.js">
+        <clobbers target="cordova-plugin-googlemaps" />
+    </js-module>
+    
+    
+    <description>Google Maps native SDK for Android and iOS</description>
+    <repo>https://github.com/mapsplugin/cordova-plugin-googlemaps</repo>
+    <issue>https://github.com/mapsplugin/cordova-plugin-googlemaps/issues</issue>
+    
+    <license>Apache 2.0</license>
+    
+    <keywords>google,maps,geo</keywords>
+    
+    <engines>
+        <engine name="cordova-android" version=">=5.1.0" />
+        <engine name="cordova-ios" version=">=4.0.0" />
+    </engines>
+    
+    <!-- android -->
+    <platform name="android">
+        <preference name="API_KEY_FOR_ANDROID" />
+        
+        <info>
+            In order to run this plugin, you need to obtain Google Maps API key for Android.
+            Visit https://github.com/mapsplugin/cordova-plugin-googlemaps/wiki/Installation
+            
+            Check our release notes.
+            https://github.com/wf9a5m75/phonegap-googlemaps-plugin/wiki/Release-Notes
+        </info>
+        
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="GoogleMaps">
+                <param name="android-package" value="plugin.google.maps.GoogleMaps" />
+                <param name="onload" value="true" />
+                <param name="onreset" value="true" />
+            </feature>
+            <feature name="External">
+                <param name="android-package" value="plugin.google.maps.External" />
+            </feature>
+            <feature name="Geocoder">
+                <param name="android-package" value="plugin.google.maps.MyGeocoder" />
+            </feature>
+        </config-file>
+        
+        <framework src="com.google.android.gms:play-services-maps:9.8.0" />
+        <framework src="com.google.android.gms:play-services-location:9.8.0" />
+        
+        <!-- plugin src files -->
+        <source-file src="src/android/plugin/google/maps/AsyncLicenseInfo.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/AsyncKmlParser.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/AsyncLoadImage.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/AsyncLoadImageInterface.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/GoogleMaps.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/MyPlugin.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/MyPluginLayout.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/MyPluginInterface.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PluginCircle.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PluginAsyncInterface.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/External.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/MyGeocoder.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PluginGroundOverlay.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PluginKmlOverlay.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PluginMap.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PluginMarker.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PluginPolygon.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PluginPolyline.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PluginTileOverlay.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PluginTileProvider.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PluginUtil.java" target-dir="src/plugin/google/maps" />
+        
+        <!-- clustering -->
+        <source-file src="src/android/plugin/google/maps/clustering/Cluster.java" target-dir="src/plugin/google/maps/clustering" />
+        <source-file src="src/android/plugin/google/maps/clustering/ClusterItem.java" target-dir="src/plugin/google/maps/clustering" />
+        <source-file src="src/android/plugin/google/maps/clustering/ClusterManager.java" target-dir="src/plugin/google/maps/clustering" />
+        
+        <source-file src="src/android/plugin/google/maps/clustering/algo/Algorithm.java" target-dir="src/plugin/google/maps/clustering/algo" />
+        <source-file src="src/android/plugin/google/maps/clustering/algo/GridBasedAlgorithm.java" target-dir="src/plugin/google/maps/clustering/algo" />
+        <source-file src="src/android/plugin/google/maps/clustering/algo/NonHierarchicalDistanceBasedAlgorithm.java" target-dir="src/plugin/google/maps/clustering/algo" />
+        <source-file src="src/android/plugin/google/maps/clustering/algo/PreCachingAlgorithmDecorator.java" target-dir="src/plugin/google/maps/clustering/algo" />
+        <source-file src="src/android/plugin/google/maps/clustering/algo/StaticCluster.java" target-dir="src/plugin/google/maps/clustering/algo" />
+        
+        <source-file src="src/android/plugin/google/maps/clustering/view/ClusterRenderer.java" target-dir="src/plugin/google/maps/clustering/view" />
+        <source-file src="src/android/plugin/google/maps/clustering/view/DefaultClusterRenderer.java" target-dir="src/plugin/google/maps/clustering/view" />
+        
+        <!-- data -->
+        <source-file src="src/android/plugin/google/maps/data/DataPolygon.java" target-dir="src/plugin/google/maps/data" />
+        <source-file src="src/android/plugin/google/maps/data/Feature.java" target-dir="src/plugin/google/maps/data" />
+        <source-file src="src/android/plugin/google/maps/data/Geometry.java" target-dir="src/plugin/google/maps/data" />
+        <source-file src="src/android/plugin/google/maps/data/Layer.java" target-dir="src/plugin/google/maps/data" />
+        <source-file src="src/android/plugin/google/maps/data/LineString.java" target-dir="src/plugin/google/maps/data" />
+        <source-file src="src/android/plugin/google/maps/data/MultiGeometry.java" target-dir="src/plugin/google/maps/data" />
+        <source-file src="src/android/plugin/google/maps/data/Point.java" target-dir="src/plugin/google/maps/data" />
+        <source-file src="src/android/plugin/google/maps/data/Renderer.java" target-dir="src/plugin/google/maps/data" />
+        <source-file src="src/android/plugin/google/maps/data/Style.java" target-dir="src/plugin/google/maps/data" />
+        
+        <source-file src="src/android/plugin/google/maps/data/geojson/BiMultiMap.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonFeature.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonGeometryCollection.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonLayer.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonLineString.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonLineStringStyle.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonMultiLineString.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonMultiPoint.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonMultiPolygon.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonParser.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonPoint.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonPointStyle.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonPolygon.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonPolygonStyle.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonRenderer.java" target-dir="src/plugin/google/maps/data/geojson" />
+        <source-file src="src/android/plugin/google/maps/data/geojson/GeoJsonStyle.java" target-dir="src/plugin/google/maps/data/geojson" />
+        
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlBoolean.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlContainer.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlContainerParser.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlFeatureParser.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlGroundOverlay.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlLayer.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlLineString.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlMultiGeometry.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlParser.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlPlacemark.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlPoint.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlPolygon.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlRenderer.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlStyle.java" target-dir="src/plugin/google/maps/data/kml" />
+        <source-file src="src/android/plugin/google/maps/data/kml/KmlStyleParser.java" target-dir="src/plugin/google/maps/data/kml" />
+        
+        <!-- geometry -->
+        <source-file src="src/android/plugin/google/maps/geometry/Bounds.java" target-dir="src/plugin/google/maps/geometry" />
+        <source-file src="src/android/plugin/google/maps/geometry/Point.java" target-dir="src/plugin/google/maps/geometry" />
+        
+        <!-- heatmaps -->
+        <source-file src="src/android/plugin/google/maps/heatmaps/Gradient.java" target-dir="src/plugin/google/maps/heatmaps" />
+        <source-file src="src/android/plugin/google/maps/heatmaps/HeatmapTileProvider.java" target-dir="src/plugin/google/maps/heatmaps" />
+        <source-file src="src/android/plugin/google/maps/heatmaps/WeightedLatLng.java" target-dir="src/plugin/google/maps/heatmaps" />
+        
+        <!-- projection -->
+        <source-file src="src/android/plugin/google/maps/projection/Point.java" target-dir="src/plugin/google/maps/projection" />
+        <source-file src="src/android/plugin/google/maps/projection/SphericalMercatorProjection.java" target-dir="src/plugin/google/maps/projection" />
+        
+        <!-- quadtree -->
+        <source-file src="src/android/plugin/google/maps/quadtree/PointQuadTree.java" target-dir="src/plugin/google/maps/quadtree" />
+        
+        <!-- ui -->
+        <source-file src="src/android/plugin/google/maps/ui/BubbleDrawable.java" target-dir="src/plugin/google/maps/ui" />
+        <source-file src="src/android/plugin/google/maps/ui/BubbleIconFactory.java" target-dir="src/plugin/google/maps/ui" />
+        <source-file src="src/android/plugin/google/maps/ui/IconGenerator.java" target-dir="src/plugin/google/maps/ui" />
+        <source-file src="src/android/plugin/google/maps/ui/RotationLayout.java" target-dir="src/plugin/google/maps/ui" />
+        <source-file src="src/android/plugin/google/maps/ui/SquareTextView.java" target-dir="src/plugin/google/maps/ui" />
+        
+        <source-file src="src/android/plugin/google/maps/MarkerManager.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/MathUtil.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/PolyUtil.java" target-dir="src/plugin/google/maps" />
+        <source-file src="src/android/plugin/google/maps/SphericalUtil.java" target-dir="src/plugin/google/maps" />
+        
+        <!-- resources files -->
+        <source-file src="res/drawable-xhdpi/amu_bubble_mask.9.png" target-dir="res/drawable-xhdpi" />
+        <source-file src="res/drawable-xhdpi/amu_bubble_shadow.9.png" target-dir="res/drawable-xhdpi" />
+        <source-file src="res/drawable-xxhdpi/amu_bubble_mask.9.png" target-dir="res/drawable-xxhdpi" />
+        <source-file src="res/drawable-xxhdpi/amu_bubble_shadow.9.png" target-dir="res/drawable-xxhdpi" />
+        <source-file src="res/layout/amu_info_window.xml" target-dir="res/layout" />
+        <source-file src="res/layout/amu_text_bubble.xml" target-dir="res/layout" />
+        <source-file src="res/layout/amu_webview.xml" target-dir="res/layout" />
+        <source-file src="res/raw/amu_ballon_gx_prefix.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_basic_folder.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_basic_placemark.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_cdata.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_default_balloon.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_document_nest.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_draw_order_ground_overlay.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_extended_data.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_ground_overlay_color.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_ground_overlay.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_inline_style.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_multigeometry_placemarks.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_multiple_placemarks.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_nested_folders.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_nested_multigeometry.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_poly_style_boolean_alpha.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_poly_style_boolean_numeric.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_unknwown_folder.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_unsupported.kml" target-dir="res/raw" />
+        <source-file src="res/raw/amu_visibility_ground_overlay.kml" target-dir="res/raw" />
+        <source-file src="res/values/ids.xml" target-dir="res/values" />
+        <source-file src="res/values/styles.xml" target-dir="res/values" />
+        
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="$API_KEY_FOR_ANDROID" />
+            <!-- Google Play Services SDK -->
+            <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+            <!-- The following two permissions are not required to use
+             Google Maps Android API v2, but are recommended. -->
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <!-- OpenGL ES version 2 -->
+            <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+            <!-- GPS -->
+            <uses-feature android:name="android.hardware.location" />
+            <uses-feature android:name="android.hardware.location.gps" />
+        </config-file>
+    </platform>
+    
+    <!-- ios -->
+    <platform name="ios">
+        <preference name="API_KEY_FOR_IOS" />
+        
+        <info>
+            In order to run this plugin, you need to obtain Google Maps API key for iOS.
+            Visit https://github.com/mapsplugin/cordova-plugin-googlemaps/wiki/Installation
+            
+            Check our release notes.
+            https://github.com/mapsplugin/cordova-plugin-googlemaps/wiki/Release-Notes
+        </info>
+        
+        <config-file target="config.xml" parent="/*">
+            <feature name="GoogleMaps">
+                <param name="ios-package" value="GoogleMaps" />
+                <param name="onload" value="true" />
+                <param name="onreset" value="true" />
+            </feature>
+            <feature name="External">
+                <param name="ios-package" value="External" />
+            </feature>
+            <feature name="Geocoder">
+                <param name="ios-package" value="Geocoder" />
+            </feature>
+            <feature name="Map">
+                <param name="ios-package" value="Map" />
+            </feature>
+            <feature name="Circle">
+                <param name="ios-package" value="Circle" />
+            </feature>
+            <feature name="Geocoder">
+                <param name="ios-package" value="Geocoder" />
+            </feature>
+            <feature name="GroundOverlay">
+                <param name="ios-package" value="GroundOverlay" />
+            </feature>
+            <feature name="KmlOverlay">
+                <param name="ios-package" value="KmlOverlay" />
+            </feature>
+            <feature name="Marker">
+                <param name="ios-package" value="Marker" />
+            </feature>
+            <feature name="Polygon">
+                <param name="ios-package" value="Polygon" />
+            </feature>
+            <feature name="Polyline">
+                <param name="ios-package" value="Polyline" />
+            </feature>
+            <feature name="TileOverlay">
+                <param name="ios-package" value="TileOverlay" />
+            </feature>
+        </config-file>
+        
+        <header-file src="src/ios/GoogleMaps/Circle.h" />
+        <source-file src="src/ios/GoogleMaps/Circle.m" />
+        <header-file src="src/ios/GoogleMaps/External.h" />
+        <source-file src="src/ios/GoogleMaps/External.m" />
+        <header-file src="src/ios/GoogleMaps/Geocoder.h" />
+        <source-file src="src/ios/GoogleMaps/Geocoder.m" />
+        <header-file src="src/ios/GoogleMaps/GoogleMaps.h" />
+        <source-file src="src/ios/GoogleMaps/GoogleMaps.m" />
+        <header-file src="src/ios/GoogleMaps/GoogleMapsViewController.h" />
+        <source-file src="src/ios/GoogleMaps/GoogleMapsViewController.m" />
+        <header-file src="src/ios/GoogleMaps/GroundOverlay.h" />
+        <source-file src="src/ios/GoogleMaps/GroundOverlay.m" />
+        <header-file src="src/ios/GoogleMaps/KmlOverlay.h" />
+        <source-file src="src/ios/GoogleMaps/KmlOverlay.m" />
+        <header-file src="src/ios/GoogleMaps/Map.h" />
+        <source-file src="src/ios/GoogleMaps/Map.m" />
+        <header-file src="src/ios/GoogleMaps/Marker.h" />
+        <source-file src="src/ios/GoogleMaps/Marker.m" />
+        <header-file src="src/ios/GoogleMaps/MyPlgunProtocol.h" />
+        <header-file src="src/ios/GoogleMaps/PluginUtil.h" />
+        <source-file src="src/ios/GoogleMaps/PluginUtil.m" />
+        <header-file src="src/ios/GoogleMaps/Polygon.h" />
+        <source-file src="src/ios/GoogleMaps/Polygon.m" />
+        <header-file src="src/ios/GoogleMaps/Polyline.h" />
+        <source-file src="src/ios/GoogleMaps/Polyline.m" />
+        <header-file src="src/ios/GoogleMaps/TBXML.h" />
+        <source-file src="src/ios/GoogleMaps/TBXML.m" />
+        <header-file src="src/ios/GoogleMaps/TileOverlay.h" />
+        <source-file src="src/ios/GoogleMaps/TileOverlay.m" />
+        <header-file src="src/ios/GoogleMaps/NSData-Base64/NSData+Base64.h" />
+        <header-file src="src/ios/GoogleMaps/NSData-Base64/NSData+Base64.podspec" />
+        <source-file src="src/ios/GoogleMaps/NSData-Base64/NSData+Base64.m" />
+        <header-file src="src/ios/GoogleMaps/MFGoogleMapAdditions/GMSCoordinateBounds+Geometry.h" />
+        <source-file src="src/ios/GoogleMaps/MFGoogleMapAdditions/GMSCoordinateBounds+Geometry.m" />
+        <header-file src="src/ios/GoogleMaps/MyPluginLayer.h" />
+        <source-file src="src/ios/GoogleMaps/MyPluginLayer.m" />
+        <header-file src="src/ios/GoogleMaps/MyReachability.h" />
+        <source-file src="src/ios/GoogleMaps/MyReachability.m" />
+        <header-file src="src/ios/GoogleMaps/MyPluginLayerDebugView.h" />
+        <source-file src="src/ios/GoogleMaps/MyPluginLayerDebugView.m" />
+        <header-file src="src/ios/GoogleMaps/MyPluginScrollView.h" />
+        <source-file src="src/ios/GoogleMaps/MyPluginScrollView.m" />
+        
+        <!-- CLUSTERING FILES -->
+        <header-file src="src/ios/GoogleMaps/Clustering/GMUCluster.h" />
+        <header-file src="src/ios/GoogleMaps/Clustering/GMUClusterItem.h" />
+        <header-file src="src/ios/GoogleMaps/Clustering/GMUClusterManager.h" />
+        <source-file src="src/ios/GoogleMaps/Clustering/GMUClusterManager.m" />
+        <header-file src="src/ios/GoogleMaps/Clustering/GMUClusterManager+Testing.h" />
+        <header-file src="src/ios/GoogleMaps/Clustering/GMUMarkerClustering.h" />
+        <header-file src="src/ios/GoogleMaps/Clustering/GMUStaticCluster.h" />
+        <source-file src="src/ios/GoogleMaps/Clustering/GMUStaticCluster.m" />
+        <header-file src="src/ios/GoogleMaps/Clustering/POIItem.h" />
+        <source-file src="src/ios/GoogleMaps/Clustering/POIItem.m" />
+        
+        <header-file src="src/ios/GoogleMaps/Clustering/Algo/GMUClusterAlgorithm.h" />
+        <header-file src="src/ios/GoogleMaps/Clustering/Algo/GMUGridBasedClusterAlgorithm.h" />
+        <source-file src="src/ios/GoogleMaps/Clustering/Algo/GMUGridBasedClusterAlgorithm.m" />
+        <header-file src="src/ios/GoogleMaps/Clustering/Algo/GMUNonHierarchicalDistanceBasedAlgorithm.h" />
+        <source-file src="src/ios/GoogleMaps/Clustering/Algo/GMUNonHierarchicalDistanceBasedAlgorithm.m" />
+        <header-file src="src/ios/GoogleMaps/Clustering/Algo/GMUSimpleClusterAlgorithm.h" />
+        <source-file src="src/ios/GoogleMaps/Clustering/Algo/GMUSimpleClusterAlgorithm.m" />
+        <header-file src="src/ios/GoogleMaps/Clustering/Algo/GMUWrappingDictionaryKey.h" />
+        <source-file src="src/ios/GoogleMaps/Clustering/Algo/GMUWrappingDictionaryKey.m" />
+        
+        <header-file src="src/ios/GoogleMaps/Clustering/View/GMUClusterIconGenerator.h" />
+        <header-file src="src/ios/GoogleMaps/Clustering/View/GMUClusterRenderer.h" />
+        <header-file src="src/ios/GoogleMaps/Clustering/View/GMUDefaultClusterIconGenerator.h" />
+        <source-file src="src/ios/GoogleMaps/Clustering/View/GMUDefaultClusterIconGenerator.m" />
+        <header-file src="src/ios/GoogleMaps/Clustering/View/GMUDefaultClusterIconGenerator+Testing.h" />
+        <header-file src="src/ios/GoogleMaps/Clustering/View/GMUDefaultClusterRenderer.h" />
+        <source-file src="src/ios/GoogleMaps/Clustering/View/GMUDefaultClusterRenderer.m" />
+        <header-file src="src/ios/GoogleMaps/Clustering/View/GMUDefaultClusterRenderer+Testing.h" />
+        
+        <header-file src="src/ios/GoogleMaps/QuadTree/GQTBounds.h" />
+        <header-file src="src/ios/GoogleMaps/QuadTree/GQTPoint.h" />
+        <header-file src="src/ios/GoogleMaps/QuadTree/GQTPointQuadTree.h" />
+        <source-file src="src/ios/GoogleMaps/QuadTree/GQTPointQuadTree.m" />
+        <header-file src="src/ios/GoogleMaps/QuadTree/GQTPointQuadTreeChild.h" />
+        <source-file src="src/ios/GoogleMaps/QuadTree/GQTPointQuadTreeChild.m" />
+        <header-file src="src/ios/GoogleMaps/QuadTree/GQTPointQuadTreeItem.h" />
+        
+        <config-file target="*-Info.plist" parent="Google Maps API Key">
+            <string>$API_KEY_FOR_IOS</string>
+        </config-file>
+        
+        <preference name="NSLocationWhenInUseUsageDescription" default="Show your location on the map" />
+        <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+            <string>$NSLocationWhenInUseUsageDescription</string>
+        </config-file>
+        
+        <preference name="NSLocationAlwaysUsageDescription" default="Trace your location on the map" />
+        <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+            <string>$NSLocationAlwaysUsageDescription</string>
+        </config-file>
+        
+        <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+            <array>
+                <string>googlechromes</string>
+                <string>comgooglemaps</string>
+            </array>
+        </config-file>
+        
+        <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+            <array>
+                <dict>
+                    <key>CFBundleTypeRole</key>
+                    <string>Editor</string>
+                    <key>CFBundleURLName</key>
+                    <string>$PACKAGE_NAME</string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>$PACKAGE_NAME</string>
+                    </array>
+                </dict>
+            </array>
+        </config-file>
+        
+        <dependency id="com.googlemaps.ios" url="https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk" branch="master"  />
+    </platform>
+</plugin>
