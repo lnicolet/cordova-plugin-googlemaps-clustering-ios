@@ -36,20 +36,19 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
 
 + (void)initialize {
     kGMUBucketBackgroundColors = @[
-                                   UIColorFromHEX(0xff9933),
-                                   UIColorFromHEX(0xff9933),
-                                   UIColorFromHEX(0xff9933),
-                                   UIColorFromHEX(0xff9933),
-                                   UIColorFromHEX(0xff9933),
-                                   UIColorFromHEX(0xff9933),
-                                   UIColorFromHEX(0xff9933),
+                                   UIColorFromHEX(0x03A9F4),
+                                   UIColorFromHEX(0xCDDC39),
+                                   UIColorFromHEX(0xFF5722),
+                                   UIColorFromHEX(0x4CAF50),
+                                   UIColorFromHEX(0x607D8B),
+                                   UIColorFromHEX(0x9C27B0)
                                    ];
 }
 
 - (instancetype)init {
     if ((self = [super init]) != nil) {
         _iconCache = [[NSCache alloc] init];
-        _buckets = @[ @10, @20, @50, @100, @150, @200, @300 ];
+        _buckets = @[ @20, @50, @100, @200, @250, @350 ];
     }
     return self;
 }
